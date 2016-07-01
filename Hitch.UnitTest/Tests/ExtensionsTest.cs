@@ -121,5 +121,30 @@ namespace Hitch.UnitTest
             Assert.AreEqual(name, actual.Name, "Expected name of Jonathan");
             Assert.AreEqual(age, actual.Age, "Expected age of 28");
         }
+
+        [TestMethod]
+        public void Select_returns_string_collection_of_names()
+        {
+            // Arrange
+            const string name1 = "Cersei";
+            const string name2 = "Margery";
+            const string name3 = "Tommin";
+
+            _people = new List<Person>
+            {
+                new Person(name1, 30),
+                new Person(name2, 20),
+                new Person(name3, 16),
+            };
+
+            // Act
+            var actual = _people.Select(x => x.Name).ToList();
+
+            // Assert
+            Assert.AreEqual(3, actual.Count);
+            Assert.IsTrue(actual.Contains(name1));
+            Assert.IsTrue(actual.Contains(name2));
+            Assert.IsTrue(actual.Contains(name3));
+        }
     }
 }

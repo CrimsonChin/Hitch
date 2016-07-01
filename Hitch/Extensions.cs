@@ -18,6 +18,14 @@ namespace Hitch
             }
         }
 
+        public static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> predicate)
+        {
+            foreach (var item in source)
+            {
+                yield return predicate(item);
+            }
+        }
+
         public static IList<T> ToList<T>(this IEnumerable<T> source)
         {
             IList<T> list = new List<T>();
